@@ -1,0 +1,135 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyStatefulWidget(),
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  MyStatefulWidget({Key? key}) : super(key: key);
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter Navigation'),
+          backgroundColor: Color.fromARGB(255, 124, 115, 203),
+        ),
+        drawer: Drawer(
+          elevation: 20.0,
+          backgroundColor: Color.fromARGB(255, 124, 115, 203),
+          child: Container(
+            color: Color.fromARGB(255, 212, 210, 229),
+            child: Column(children: <Widget>[
+              const UserAccountsDrawerHeader(
+                decoration:
+                    BoxDecoration(color: Color.fromARGB(255, 124, 115, 203)),
+                accountName: Text("Ruben Dias"),
+                accountEmail: Text("rubd@gmail.com"),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://www.earnthenecklace.com/wp-content/uploads/2016/11/I-FeelIt-Coming-by-The-Weeknd-300x300.jpg"),
+                  radius: 30,
+                  backgroundColor: Color.fromARGB(255, 15, 15, 14),
+                ),
+              ),
+              ListTile(
+                title: const Text("Profile"),
+                leading: const Icon(Icons.mail),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Mailpage()),
+                  );
+                },
+              ),
+              const Divider(
+                height: 0.1,
+              ),
+              ListTile(
+                title: const Text("About"),
+                leading: const Icon(Icons.inbox),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Primarypage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text("Settings"),
+                leading: const Icon(Icons.people),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Primarypage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text("Cars"),
+                leading: const Icon(Icons.local_offer),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Primarypage()),
+                  );
+                },
+              ),
+            ]),
+          ),
+        ));
+  }
+}
+
+class Mailpage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Mail Box"),
+      ),
+      body: Center(
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.pink),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Mail Box'))),
+    );
+  }
+}
+
+class Primarypage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("First Screen"),
+      ),
+      body: Center(
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.pink),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('First Screen'))),
+    );
+  }
+}
